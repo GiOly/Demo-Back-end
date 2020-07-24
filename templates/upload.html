@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>语音实验演示平台</title>
 </head>
 <body>
 <form id="form1" method="post" action="/api/upload" enctype="multipart/form-data">
@@ -13,5 +13,7 @@
 	<p>result:{{result}}</p>
     </div>
 </form>
+<h1>上传音频的波形图为：</h1>
+<img src="{{ url_for('static', filename= './images/test.jpg') }}" alt="无图片"/>>
 </body>
 </html>

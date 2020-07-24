@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template, send_from_directory, make_response
 import flask, os
-from model import mfcc
+from model import mfcc, waveshow
 
 app = Flask(__name__)
 
@@ -38,14 +38,11 @@ def api_upload():
         print('request method is POST')
         audio = request.files["audio"]
         if audio and allowed_file(audio.filename):
-            print("1")
-            audio_filename = audio.filename
-            audio_filename = str(audio_filename)
-            result = mfcc(audio)
-            result = str(result)
+            print("已读取文件")
+            audio_filename = str(audio.filename)
+            waveshow(audio)
             audio.save(os.path.join(file_dir, audio_filename))
-            data = {"state":"SUCCESS", "result":result}
-            return render_template('upload.html', state = "SUCCESS", result = result)
+            return render_template('upload.html')
 
 if __name__ == "__main__":
     app.run()
